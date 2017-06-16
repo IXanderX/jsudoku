@@ -1,0 +1,50 @@
+<project name="sudoku Project" default="help" basedir=".">
+  <property name="app.name"      value="Sudoku"/>
+  <property name="src.home"      value="/var/lib/jenkins/workspace/sudoku/sudoku_src"/>
+  <property name="work.home"    value="/var/lib/jenkins/workspace/sudoku/work"/>
+  <property name="dist.home"     value="/var/lib/jenkins/workspace/sudoku/dist"/>
+  
+  <property name="pmd.dir" value="/var/lib/jenkins/workspace/sudoku/pmd-bin-4.2.6" />
+
+  <target name="all" depends="clean,pmd,compile,dist" />
+
+  <target name="clean"
+          description="Delete old work and dist directories">
+    <delete dir="${work.home}"/>
+    <delete dir="${dist.home}"/>
+  </target>
+
+  <target name="prepare" depends="clean"
+          description="Create working dir">
+    <mkdir  dir="${dist.home}"/>
+    <mkdir  dir="${work.home}"/>
+  </target>
+
+  <target name="pmd">
+	<path id="pmd.classpath">
+            <fileset dir="${pmd.dir}\lib"> 
+	       <include name="*.jar" /> 
+    	    </fileset>
+	</path>
+   <taskdef name="pmd" classname="net.sourceforge.pmd.ant.PMDTask" classpathref="pmd.classpath" />
+    <pmd rulesetfiles="basic" shortFilenames="true">
+      <formatter type="xml" toFile="pmd_report.xml" linePrefix=".line"/>
+        <fileset dir="${src.home}">
+           <include name="*.java"/>
+	</fileset>
+    </pmd>
+  </target>
+
+  <target name="compile" depends="prepare"
+          description="Compile Java sources">
+    <javac srcdir="${src.home}"
+          destdir="${work.home}">
+    </javac>
+  </target>
+
+  <target name="dist" depends="compile"
+          description="Create file for binary distribution">
+    <jar jarfile="${dist.home}/sudoku.jar"
+         basedir="${work.home}"/>
+  </target>
+</project>
