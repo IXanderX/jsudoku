@@ -1,10 +1,10 @@
 <project name="sudoku Project" default="help" basedir=".">
   <property name="app.name"      value="Sudoku"/>
-  <property name="src.home"      value="/var/lib/jenkins/workspace/sudoku/sudoku_src"/>
-  <property name="work.home"    value="/var/lib/jenkins/workspace/sudoku/work"/>
-  <property name="dist.home"     value="/var/lib/jenkins/workspace/sudoku/dist"/>
+  <property name="src.home"      value="sudoku_src"/>
+  <property name="work.home"    value="work"/>
+  <property name="dist.home"     value="dist"/>
   
-  <property name="pmd.dir" value="${JENKINS_HOME}/workspace/${ITEM_FULLNAME}/pmd-bin-4.2.6" />
+  <property name="pmd.dir" value="pmd-bin-4.2.6" />
 
   <target name="all" depends="clean,pmd,compile,dist" />
 
