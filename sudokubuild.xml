@@ -4,7 +4,7 @@
   <property name="work.home"    value="/var/lib/jenkins/workspace/sudoku/work"/>
   <property name="dist.home"     value="/var/lib/jenkins/workspace/sudoku/dist"/>
   
-  <property name="pmd.dir" value="/var/lib/jenkins/workspace/sudoku/pmd-bin-4.2.6" />
+  <property name="pmd.dir" value="${JENKINS_HOME}/workspace/${ITEM_FULLNAME}/pmd-bin-4.2.6" />
 
   <target name="all" depends="clean,pmd,compile,dist" />
 
