@@ -1,5 +1,3 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-
 <project name="sudoku Project" default="help" basedir=".">
   <property name="app.name"      value="Sudoku"/>
   <property name="src.home"      value="sudoku_src"/>
